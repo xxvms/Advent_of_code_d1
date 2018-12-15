@@ -78,7 +78,7 @@ void finding_letters(const std::vector<std::string> &import_dataSTR){
     }
 
     std::cout << "Pairs of 2: " << count2 << " & Pairs of 3: " << count3 << '\n';
-    std::cout << "Wynik " << count2 * count3;
+    std::cout << "Score " << count2 * count3;
 }
 
 
