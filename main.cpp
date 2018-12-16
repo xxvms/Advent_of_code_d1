@@ -13,7 +13,7 @@ void read_file_int(std::vector<int> &import_data);
 void read_file_str(std::vector<std::string> &import_data_str);
 void finding_summary(const std::vector<int> &data_to_sum, std::vector<int> &bank);
 void finding_letters(const std::vector<std::string> &import_dataSTR);
-
+std::vector<std::string> find_2_boxes(const std::vector<std::string>& import_data_str);
 
 int main() {
 
@@ -25,13 +25,94 @@ int main() {
     // reading string from the file
     std::vector<std::string> letters{};
     read_file_str(letters);
-    finding_letters(letters);
+    //finding_letters(letters);
+    std::vector<std::string> vector;
 
+    vector = find_2_boxes(letters);
+
+    std::cout << "blach";
 
 
     return 0;
 }
 
+std::vector<std::string> find_2_boxes(const std::vector<std::string> &import_data_str) {
+/*
+ * I have to compare char by char
+ *
+ * if first char in source is == to first char in test
+ * do
+ * go to next char
+ * else{
+ * If counter is less then 1
+ * increase counter}
+ * else{
+ * bool set to false;}
+ *
+ * then I have to go to the next line until I get to end.
+ * remove first element
+ *
+ * repeat the compare and search
+ */
+
+    std::vector<std::string> copy_of_data = import_data_str; // create local copy
+    while (copy_of_data.size() >= 1) {
+        std::string first_record = copy_of_data.at(0); // get 1st record to compare
+        //std::cout << "size " << copy_of_data.size() << '\n';
+        copy_of_data.erase(copy_of_data.begin()); // removes first element from the vector
+        bool flag1 = true;
+        bool flag2 = true;
+
+
+        for (int i = 0; i < copy_of_data.size(); i++) {
+            int j = 0;
+
+            for (; j < first_record.size(); j++) {
+
+                if (flag1 || flag2) {
+
+                    if (copy_of_data.at(i).at(j) != first_record.at(j)) {
+                        //std::cout << "record " << copy_of_data.at(i).at(j) << " != " << first_record.at(j) << '\n';
+
+
+                        if (flag1 == false) {
+                            flag2 = false;
+                            j = first_record.size();
+                        }
+                        flag1 = false;
+                    } else {
+                       // std::cout << "record " << copy_of_data.at(i).at(j) << " == " << first_record.at(j) << '\n';
+                    }
+                }
+            }
+
+            //std::cout << "====================== record " << i << " ======================" << '\n';
+
+            if (!flag1 && !flag2) {
+                flag1 = true;
+                flag2 = true;
+            } else {
+
+                std::vector<std::string> victory{};
+
+                victory.push_back(first_record);
+                victory.push_back(copy_of_data.at(i));
+
+                std::cout << "!!!!!!!!!!!!!!!!!!!!!Sucess!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << '\n';
+                std::cout << "!!!!!!!!!!!!!!!!!!!!!Sucess!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << '\n';
+                std::cout << '\n';
+                std::cout << "  1st pair " << first_record << '\n';
+                std::cout << "& 2nd pair " << copy_of_data.at(i) << '\n';
+                std::cout << '\n';
+                std::cout << "!!!!!!!!!!!!!!!!!!!!!Sucess!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << '\n';
+                std::cout << "!!!!!!!!!!!!!!!!!!!!!Sucess!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << '\n';
+
+                flag1 = true;
+                return victory;
+            }
+        }
+    }
+}
 //getting letters from file STRING
 void read_file_str(std::vector<std::string> &import_data_str){
     std::ifstream file("day2.txt");
@@ -42,6 +123,8 @@ void read_file_str(std::vector<std::string> &import_data_str){
 
 }
 
+
+// finding how many letters is repeated 2 or 3 times and getting only one pair of each to string
 void finding_letters(const std::vector<std::string> &import_dataSTR){
 
     int count2 = 0;
