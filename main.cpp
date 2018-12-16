@@ -37,23 +37,6 @@ int main() {
 }
 
 std::vector<std::string> find_2_boxes(const std::vector<std::string> &import_data_str) {
-/*
- * I have to compare char by char
- *
- * if first char in source is == to first char in test
- * do
- * go to next char
- * else{
- * If counter is less then 1
- * increase counter}
- * else{
- * bool set to false;}
- *
- * then I have to go to the next line until I get to end.
- * remove first element
- *
- * repeat the compare and search
- */
 
     std::vector<std::string> copy_of_data = import_data_str; // create local copy
     while (copy_of_data.size() >= 1) {
