@@ -14,27 +14,49 @@ void read_file_str(std::vector<std::string> &import_data_str);
 void finding_summary(const std::vector<int> &data_to_sum, std::vector<int> &bank);
 void finding_letters(const std::vector<std::string> &import_dataSTR);
 std::vector<std::string> find_2_boxes(const std::vector<std::string>& import_data_str);
+void counting_garment(const std::vector<std::string>&garment_for_clothes);
+
+
 
 int main() {
 
-    //std::vector<int>data_file{}; // to keep all frequences from file
+    //std::vector<int>data_file{}; // to keep all frequencies from file
     //std::vector<int>bank{};      // to keep summary of each iteration
     //read_file(data_file);
     //finding_summary(data_file, bank);
 
     // reading string from the file
-    std::vector<std::string> letters{};
-    read_file_str(letters);
+    //std::vector<std::string> letters{};
+    //read_file_str(letters);
     //finding_letters(letters);
-    std::vector<std::string> vector;
+    //std::vector<std::string> vector;
+    //vector = find_2_boxes(letters);
 
-    vector = find_2_boxes(letters);
+    std::vector<std::string>garment{};
+    read_file_str(garment);
+    counting_garment(garment);
 
-    std::cout << "blach";
 
 
     return 0;
 }
+
+
+
+
+void counting_garment(const std::vector<std::string>&garment_for_clothes){
+
+    std::vector<std::string>local_copy_garments{};
+    local_copy_garments = garment_for_clothes;
+
+    std::cout << "garments " << garment_for_clothes.size() << '\n';
+    std::cout << "local " << local_copy_garments.size() << '\n';
+
+    std::cout << '\n';
+
+
+}
+
 
 std::vector<std::string> find_2_boxes(const std::vector<std::string> &import_data_str) {
 
@@ -98,7 +120,7 @@ std::vector<std::string> find_2_boxes(const std::vector<std::string> &import_dat
 }
 //getting letters from file STRING
 void read_file_str(std::vector<std::string> &import_data_str){
-    std::ifstream file("day2.txt");
+    std::ifstream file("day3.txt");
     std::string data;
     while (std::getline(file, data)){
         import_data_str.push_back(data);
@@ -151,7 +173,7 @@ void finding_letters(const std::vector<std::string> &import_dataSTR){
 // getting numbers from file INT
 void read_file_int(std::vector<int> &import_data){
 
-    std::ifstream file("data.txt");
+    std::ifstream file("xxx.txt");
     std::string data;
     while (std::getline(file, data)){
         int d = std::atoi(data.c_str());
